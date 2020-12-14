@@ -3,7 +3,7 @@ name: push docker image
 on:
   push:
     branches:
-      - main
+      - docker-test
 
 jobs:
   build_and_push:
@@ -14,8 +14,8 @@ jobs:
       - name: login
         run: docker login --username '${{ secrets.DOCKER_USERNAME }}' --password '${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}'
       - name: build
-        run: docker build . -t planetariumhq/ninechronicles-headless:git-${{ github.sha }} -t planetariumhq/ninechronicles-headless:latest --build-arg COMMIT=git-${{ github.sha }}
+        run: docker build . -t area363/ninechronicles-snapshot:git-${{ github.sha }} -t area363/ninechronicles-snapshot:latest --build-arg COMMIT=git-${{ github.sha }}
       - name: push git-version
-        run: docker push planetariumhq/ninechronicles-headless:git-${{ github.sha }}
+        run: docker push area363/ninechronicles-snapshot:git-${{ github.sha }}
       - name: push latest
-        run: docker push planetariumhq/ninechronicles-headless:latest
+        run: docker push area363/ninechronicles-snapshot:latest
