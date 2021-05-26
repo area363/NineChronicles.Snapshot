@@ -358,7 +358,6 @@ namespace NineChronicles.Snapshot
         {
             var blockPath = Path.Combine(stateDirectory, "block");
             var txPath = Path.Combine(stateDirectory, "tx");
-            var txExecPath = Path.Combine(stateDirectory, "txexec");
             string[] blockDirectories = Directory.GetDirectories(
                 blockPath,
                 "epoch*",
@@ -377,8 +376,6 @@ namespace NineChronicles.Snapshot
             {
                 Directory.Delete(dir, true);
             }
-
-            Directory.Delete(txExecPath, true);
         }
 
         private void Fork(
